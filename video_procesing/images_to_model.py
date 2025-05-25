@@ -15,7 +15,7 @@ def process_frames_with_yolo(model_path, input_folder, output_folder):
         original_img = cv2.imread(input_path)
         original_h, original_w = original_img.shape[:2]
 
-        results = model(input_path, conf=0.2)
+        results = model(input_path, conf=0.2, verbose=False)
         result = results[0]
 
         if result.masks is not None:
@@ -34,9 +34,9 @@ def process_frames_with_yolo(model_path, input_folder, output_folder):
         cv2.imwrite(output_path, original_img)
 
 
-video_title = "asd"
-input_frames = os.path.join(f"../video_out/{video_title}/images")
-output_frames = os.path.join(f"../video_out/{video_title}/model_output")
-model_path = "../debug_faces_and_car_pates_v1/yolov8n_ch_2_weight_decay_0_001/weights/best.pt"
+def video_images_to_model(video_title):
+    input_frames = os.path.join(f"../video_out/{video_title}/images")
+    output_frames = os.path.join(f"../video_out/{video_title}/model_output")
+    model_path = "../debug_faces_and_car_pates_v1/yolov8n_ch_2_weight_decay_0_001/weights/best.pt"
 
-process_frames_with_yolo(model_path, input_frames, output_frames)
+    process_frames_with_yolo(model_path, input_frames, output_frames)

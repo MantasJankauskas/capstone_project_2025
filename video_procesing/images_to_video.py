@@ -1,10 +1,11 @@
 import os
 import json
+import shutil
 
 from moviepy import ImageSequenceClip, AudioFileClip
 from natsort import natsorted
 
-def frames_to_video(frames_folder, audio_path, output_video_path, fps=30):
+def frames_to_video(video_title, frames_folder, audio_path, output_video_path, fps=30):
     os.makedirs(output_video_path, exist_ok=True)
 
     image_files = natsorted([
@@ -21,8 +22,6 @@ def frames_to_video(frames_folder, audio_path, output_video_path, fps=30):
         clip.audio = audio_clip
 
     clip.write_videofile(f"{output_video_path}/{video_title}.mp4", codec='libx264', audio_codec='aac', logger=None)
-    print(f"Video saved with audio at {output_video_path}")
-
 
 
 def get_fps_from_json(json_path):
@@ -32,10 +31,16 @@ def get_fps_from_json(json_path):
     fps = video_info.get("fps")
     return fps
 
-video_title = "asd"
-frames_input = f"../video_out/{video_title}/model_output"
-audio_input = f"../video_out/{video_title}/{video_title}.mp3"
-info_input = f"../video_out/{video_title}/{video_title}_data.json"
-video_out = f"../video_out/{video_title}/final"
+def delete_old_files(frames_input, audio_input, info_input):
+    shutil.rmtree(frames_input)
+    os.remove(audio_input)
+    os.remove(info_input)
 
-frames_to_video(frames_input, audio_input, video_out, fps=get_fps_from_json(info_input))
+def convert_images_to_video(video_title):
+    frames_input = f"../video_out/{video_title}/model_output"
+    audio_input = f"../video_out/{video_title}/{video_title}.mp3"
+    info_input = f"../video_out/{video_title}/{video_title}_data.json"
+    video_out = f"../video_out/{video_title}/final"
+
+    frames_to_video(video_title, frames_input, audio_input, video_out, fps=get_fps_from_json(info_input))
+    delete_old_files(frames_input, audio_input, info_input)

@@ -3,7 +3,8 @@
 archive
 datasets/*
 wandb
-video_in/*
+/video_in/*
+!/video_in/sample.mp4
 video_out/*
 runs
 plate_and_face_model
