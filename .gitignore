@@ -11,7 +11,10 @@ plate_and_face_model
 face_detection_project
 debug_faces
 debug_faces_and_car_pates
-debug_faces_and_car_pates_v1
+/debug_faces_and_car_pates_v1/**
+!/debug_faces_and_car_pates_v1/yolov8n_ch_2_weight_decay_0_001
+!/debug_faces_and_car_pates_v1/yolov8n_ch_2_weight_decay_0_001/weights
+!/debug_faces_and_car_pates_v1/yolov8n_ch_2_weight_decay_0_001/weights/best.pt
 yolo11n.pt
 yolo11n-seg.pt
 yolo11s-seg.pt
