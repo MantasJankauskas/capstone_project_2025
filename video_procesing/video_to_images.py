@@ -52,9 +52,9 @@ def extract_video_info(video_path, output_extra_data_path):
 
 def process_video_to_images(video_title):
     video_path = f"./video_in/{video_title}.mp4"
-    frames_output = f"../video_out/{video_title}/images"
-    audio_output = f"../video_out/{video_title}/{video_title}.mp3"
-    info_output = f"../video_out/{video_title}/{video_title}_data.json"
+    frames_output = f"./video_out/{video_title}/images"
+    audio_output = f"./video_out/{video_title}/{video_title}.mp3"
+    info_output = f"./video_out/{video_title}/{video_title}_data.json"
 
     extract_frames(video_path, frames_output)
     extract_audio(video_path, audio_output)

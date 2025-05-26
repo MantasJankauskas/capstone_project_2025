@@ -37,10 +37,10 @@ def delete_old_files(frames_input, audio_input, info_input):
     os.remove(info_input)
 
 def convert_images_to_video(video_title):
-    frames_input = f"../video_out/{video_title}/model_output"
-    audio_input = f"../video_out/{video_title}/{video_title}.mp3"
-    info_input = f"../video_out/{video_title}/{video_title}_data.json"
-    video_out = f"../video_out/{video_title}/final"
+    frames_input = f"./video_out/{video_title}/model_output"
+    audio_input = f"./video_out/{video_title}/{video_title}.mp3"
+    info_input = f"./video_out/{video_title}/{video_title}_data.json"
+    video_out = f"./video_out/{video_title}/final"
 
     frames_to_video(video_title, frames_input, audio_input, video_out, fps=get_fps_from_json(info_input))
     delete_old_files(frames_input, audio_input, info_input)
